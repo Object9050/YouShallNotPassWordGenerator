@@ -1,23 +1,31 @@
-let lowerCase = "abcdefghijklmnopqrstuvwxyz";
-let upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-let numbers = "0123456789";
-let symbols = "!@#$%^&*()_+~\\`|}{[]:;?><,./-=";
+let uc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-function Password(lengthParam, lowerCaseParam, upperCaseParam, numbersParam, symbolsParam){
-    this.length = lengthParam;
-    this.lowerCase = lowerCaseParam;
-    this.upperCase = upperCaseParam;
-    this.numbers = numbersParam;
-    this.symbols = symbolsParam;
+class Password{
+    
+    constructor(){
+        this.lowerCase = "abcdefghijklmnopqrstuvwxyz"
+        this.upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    }
+    // numbers   = "0123456789";
+    // symbols   = "!@#$%^&*()_+~\\`|}{[]:;?><,./-=";
+
+    // length    = document.getElementById("passwordLength").value;
+
+    get UpperCase(){
+            return this.upperCase[Math.floor(Math.random() * this.upperCase.length)]
+
+
+        }
+        
+    
+
+
 }
 
-let length = document.getElementById("passwordLength").value;
 
-const newPass = new Password(length, lowerCase, upperCase, numbers, symbols);
+const newPass = new Password;
 console.log(newPass);
 
-function getLowerCase(){
-    const lower = newPass.lowerCase[Math.floor(Math.random() * newPass.lowerCase.length)];
-    console.log(lower);
-}
-getLowerCase();
+let x = newPass.UpperCase;
+console.log(x);
+
