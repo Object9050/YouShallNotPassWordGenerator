@@ -24,38 +24,35 @@ class Password{
         return Password.symbols[Math.floor(Math.random() * Password.symbols.length)]
     }
     password = ""
-    // createPassword (){
-    //     for (var i=0; i<this.length; i++){
-    //         key = this.getKey[Math.floor(Math.random() * this.getKey.length)]
-    //         console.log(key)
-    //     }
+    //newPass = new Password;
 }
-    
 
 function createPassword(){
     const newPass = new Password;
+    randomMath = Math.random() * newPass.getKey.length //Test math.random()
         
     for (var i=0; i<newPass.length; i++){
         key = newPass.getKey[Math.floor(Math.random() * newPass.getKey.length)]
         newPass.password += key
         console.log("Random Key Durchlauf " + i + ": " + key)
     }
-    console.log(newPass.password)
+    console.log("Fertiges Passwort: " + newPass.password)
+    return randomMath;
 }
 createPassword()
-
-const newPass2 = new Password;
+console.log(randomMath)
+// const newPass2 = new Password;
 // console.log(newPass2);
 
 //Teststation
-let x = newPass2.upperCase
-console.log(x)
-let y = newPass2.lowerCase
-console.log(y)
-let z = newPass2.symbol
-console.log(z)
-let a = newPass2.num
-console.log(a)
+// let x = newPass2.upperCase
+// console.log(x)
+// let y = newPass2.lowerCase
+// console.log(y)
+// let z = newPass2.symbol
+// console.log(z)
+// let a = newPass2.num
+// console.log(a)
 // let randomGetter = newPass2.getKey[Math.floor(Math.random() * newPass2.getKey.length)]
 // console.log(randomGetter)
 
