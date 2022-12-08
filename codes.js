@@ -1,50 +1,85 @@
-class Password{
+// Picks the value of a random index in an array
+function pickRandom(arr){
+    return arr[Math.floor(Math.random() * arr.length)]
+}
+
+// Class with static variables, stored in an array and 
+// a method to retrieve a random key from the array
+class PasswordGenerator{
     
     static lowerCase = "abcdefghijklmnopqrstuvwxyz";
     static upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     static numbers   = "0123456789";
     static symbols   = "!@#$%^&*()_+~\\`|}{[]:;?><,./-=";
+    static keyClass = [
+        PasswordGenerator.lowerCase,
+        PasswordGenerator.upperCase,
+        PasswordGenerator.numbers,
+        PasswordGenerator.symbols
+    ];
 
-    length = document.getElementById("passwordLength").value;
-
-    // Speichert alle Getter-Funktionen in einem Array, damit später per random 
-    // Funktion ein getter ausgewählt werden kann.
-    getKey = [this.upperCase, this.lowerCase, this.num, this.symbol]
-
-    get upperCase(){
-        return Password.upperCase[Math.floor(Math.random() * Password.upperCase.length)]
-        }
-    get lowerCase(){
-        return Password.lowerCase[Math.floor(Math.random() * Password.lowerCase.length)]
+    // Brilliant solution compared to git commit 'devHell2' without any getter functions.
+    // 1. Picks the content of a random keyClass element.
+    // 2. Picks a random key from said element.
+    // Got inspired by stackoverflow: https://stackoverflow.com/questions/74729692/why-does-my-password-generator-written-in-javascript-often-return-passwords-with
+    getKey(){
+        const kcls = pickRandom(PasswordGenerator.keyClass);
+        return pickRandom(kcls);        
     }
-    get num(){
-        return Password.numbers[Math.floor(Math.random() * Password.numbers.length)]
-    }
-    get symbol(){
-        return Password.symbols[Math.floor(Math.random() * Password.symbols.length)]
-    }
-    password = ""
-    //newPass = new Password;
 }
 
 function createPassword(){
-    const newPass = new Password;
-    randomMath = Math.random() * newPass.getKey.length //Test math.random()
-        
-    for (var i=0; i<newPass.length; i++){
-        key = newPass.getKey[Math.floor(Math.random() * newPass.getKey.length)]
-        newPass.password += key
-        console.log("Random Key Durchlauf " + i + ": " + key)
+    const lower = document.getElementById("lowerCase").checked;
+    const upper = document.getElementById("upperCase").checked;
+    const number = document.getElementById("numbers").checked;
+    const symbol = document.getElementById("symbols").checked;
+    if (upper + lower + number + symbol == 0) {
+      alert("Markiere mindestens ein Kästchen!");
+      return;
     }
-    console.log("Fertiges Passwort: " + newPass.password)
-    return randomMath;
+    const newPass = new PasswordGenerator();
+    let password = "";
+    let length = document.getElementById("passwordLength").value;
+    let passwordField = document.getElementById("passwordField");
+        
+    for (var i=0; i<length; i++){
+        let key = newPass.getKey()
+        password += key
+        //let isChecked = document.getElementById(newPass.getKey.name).checked;
+        // if (((lower == true) && (upper==true) || (upper==false)) && ((number==true) || (number==false)) && ((symbol==true) || (symbol==false))) {
+        //     password += key
+        // }
+        // else if (((lower == false) && (upper==true) || (upper==false)) && ((number==true) || (number==false)) && ((symbol==true) || (symbol==false))) {
+        //     console.log("Key wird nicht hinzugefügt")
+        //     }
+        // else if (((upper == true) && (lower==true) || (lower==false)) && ((number==true) || (number==false)) && ((symbol==true) || (symbol==false))) {
+        //     password += key
+        //     }
+        // else if (((number == true) && (lower==true) || (lower==false)) && ((upper==true) || (upper==false)) && ((symbol==true) || (symbol==false))) {
+        //     password += key
+        //     }
+        // else if (((symbol == true) && (lower==true) || (lower==false)) && ((number==true) || (number==false)) && ((upper==true) || (upper==false))) {
+        //     password += key
+        //     }
+        // else if (number==true){
+        //     password += key
+        // }
+        // else if (symbol==true){
+        //     password += key
+        // }
+        // else {
+        //      console.log("Nicht vorgesehen");
+        // }
+        //console.log("Random Key Run " + i + ": " + key)
+    }
+    console.log("Fertiges Passwort: " + password)
+    passwordField.innerText = password;
 }
-createPassword()
-console.log(randomMath)
-// const newPass2 = new Password;
+
+// const newPass2 = new PasswordGenerator;
 // console.log(newPass2);
 
-//Teststation
+// Testing Station
 // let x = newPass2.upperCase
 // console.log(x)
 // let y = newPass2.lowerCase
@@ -55,4 +90,9 @@ console.log(randomMath)
 // console.log(a)
 // let randomGetter = newPass2.getKey[Math.floor(Math.random() * newPass2.getKey.length)]
 // console.log(randomGetter)
+// const test = 
+//     {"name1": "inhalt1", "name2": "inhalt2", "name3": "inhalt3"}
+//     console.log (test.name1)
+
+
 

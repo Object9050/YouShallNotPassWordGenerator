@@ -8,10 +8,28 @@
     <title>Password Generator</title>
 </head>
 <body>
-    <section><p><b>You shall not Pass-word Generator</b></p></section>
-    <form id="password"><input type="text"></form>
-    <input type="number" id="passwordLength" min="6" max="20" value="6">
-    <button>Passwort erstellen</button>
+    <main class="container">
+        <section><p><b>You shall not Pass-word Generator</b></p></section>
+        <form id="passwordField"><input type="text"></form>
+        <input type="number" id="passwordLength" min="6" max="20" value="6">
+        <button onclick="createPassword()">Passwort erstellen</button>
+        <section>
+            <label for="lowerCase">Kleinbuchstaben</label>
+            <input type="checkbox" id="lowerCase" checked>
+        </section>
+        <section>
+            <label for="upperCase">Großbuchstaben</label>
+            <input type="checkbox" id="upperCase" checked>
+        </section>
+        <section>
+            <label for="numbers">Zahlen</label>
+            <input type="checkbox" id="numbers" checked>
+        </section>
+        <section>
+            <label for="symbols">Sonderzeichen</label>
+            <input type="checkbox" id="symbols" checked>
+        </section>
+    </main>
     <script src="codes.js"></script>
 </body>
 </html>
