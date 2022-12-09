@@ -29,11 +29,11 @@ class PasswordGenerator{
 }
 
 function createPassword(){
-    const lower = document.getElementById("lowerCase").checked;
-    const upper = document.getElementById("upperCase").checked;
-    const number = document.getElementById("numbers").checked;
-    const symbol = document.getElementById("symbols").checked;
-    if (upper + lower + number + symbol == 0) {
+    const isCheckedLower = document.getElementById("lowerCase").checked;
+    const isCheckedUpper = document.getElementById("upperCase").checked;
+    const isCheckedNumber = document.getElementById("numbers").checked;
+    const isCheckedSymbol = document.getElementById("symbols").checked;
+    if (isCheckedUpper + isCheckedLower + isCheckedNumber + isCheckedSymbol == 0) {
       alert("Markiere mindestens ein Kästchen!");
       return;
     }
@@ -42,9 +42,20 @@ function createPassword(){
     let length = document.getElementById("passwordLength").value;
     let passwordField = document.getElementById("passwordField");
         
-    for (var i=0; i<length; i++){
+    while (password.length < length){
         let key = newPass.getKey()
-        password += key
+        let classOfKey = PasswordGenerator.keyClass
+        if (classOfKey[0].includes(key) && isCheckedLower == true){
+            password += key
+        } else if (classOfKey[1].includes(key) && isCheckedUpper == true){
+            password += key
+        } else if (classOfKey[2].includes(key) && isCheckedNumber == true){
+            password += key
+        } else if (classOfKey[3].includes(key) && isCheckedSymbol == true){
+            password += key
+        } else {
+            console.log("Du kommst hier nicht rein")
+        }
         //let isChecked = document.getElementById(newPass.getKey.name).checked;
         // if (((lower == true) && (upper==true) || (upper==false)) && ((number==true) || (number==false)) && ((symbol==true) || (symbol==false))) {
         //     password += key
@@ -75,6 +86,12 @@ function createPassword(){
     console.log("Fertiges Passwort: " + password)
     passwordField.innerText = password;
 }
+const liste = ["abcdefg"]
+let test = PasswordGenerator.keyClass
+let char = "F"
+let testFind = test[1].includes(char)
+console.log(test[1])
+console.log(testFind)
 
 // const newPass2 = new PasswordGenerator;
 // console.log(newPass2);
