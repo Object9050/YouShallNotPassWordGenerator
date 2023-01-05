@@ -64,11 +64,11 @@ function createPassword(){
     console.log("Fertiges Passwort: " + password)
     passwordField.innerText = password;
 }  
-
+// Check if password includes all the necessary keys (e.g. upper, lower, number and symbol)
 function shallPass(arrClassOfKey, arrIsChecked, key, password){
     for (var i=0; i<arrClassOfKey; i++){
         (arrClassOfKey[i].includes(key) && arrIsChecked[i] == true)
-        return password += key // Hier stimmt irgendwas nicht
+        return password += key // Hier stimmt irgendwas nicht. Funktioniert noch nicht.
     }
 }
 
